@@ -13,8 +13,11 @@ namespace _pasta_projeto.Models
         public string Descricao { get; set; }
         public DateTime Data { get; set; }
 
-        public enum StatusTarefa
+        public enum Status
         {
+            Pendente,
+            EmAndamento,
+            Concluida
         }
     }
 }
