@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using _pasta_projeto.Context;
 using _pasta_projeto.Models;
+using _pasta_projeto.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -26,7 +27,7 @@ namespace pasta_projeto.Controllers
         [HttpPost]
         public IActionResult Create(Tarefa tarefa)
         {
-            _context.Add(tarefa);
+            _context.Add(tarefa);            
             _context.SaveChanges();
             return CreatedAtAction(nameof(GetByID), new { id = tarefa.Id}, tarefa);
         }
@@ -44,6 +45,7 @@ namespace pasta_projeto.Controllers
                 string Titulo = tarefa.Titulo;
                 string Descricao = tarefa.Descricao;
                 DateTime Data = tarefa.Data;
+                StatusTarefa statusTarefa = tarefa.StatusTarefa;
 
                 return Ok(tarefa);
             }

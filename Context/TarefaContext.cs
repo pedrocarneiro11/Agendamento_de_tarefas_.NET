@@ -15,5 +15,14 @@ namespace _pasta_projeto.Context
         }
 
         public DbSet<Tarefa> Tarefas{ get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Tarefa>()
+            .Property(t => t.StatusTarefa)
+            .HasConversion<string>(); // Converte o enum para string
+
+        base.OnModelCreating(modelBuilder);
+    }
     }
 }
