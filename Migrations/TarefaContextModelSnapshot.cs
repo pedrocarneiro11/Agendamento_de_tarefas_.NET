@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using _pasta_projeto.Context;
+using agendamento_de_tarefas.Context;
 
 #nullable disable
 
-namespace _pasta_projeto.Migrations
+namespace agendamento_de_tarefas.Migrations
 {
     [DbContext(typeof(TarefaContext))]
     partial class TarefaContextModelSnapshot : ModelSnapshot

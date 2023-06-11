@@ -4,7 +4,7 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>_pasta_projeto</RootNamespace>
+    <RootNamespace>agendamento_de_tarefas</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

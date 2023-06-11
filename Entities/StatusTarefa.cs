@@ -4,15 +4,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel;
 
-namespace _pasta_projeto.Entities
+namespace agendamento_de_tarefas.Entities
 {
-    public enum StatusTarefa 
-        {
-            [Description("Pendente")] // 0
-            Pendente,
-            [Description("EmAndamento")] // 1
-            EmAndamento,
-            [Description("Concluida")] // 2
-            Concluida
-        }
+    public enum StatusTarefa
+    {
+        [Description("Pendente")] // 0
+        Pendente,
+        [Description("EmAndamento")] // 1
+        EmAndamento,
+        [Description("Concluida")] // 2
+        Concluida
+    }
 }
