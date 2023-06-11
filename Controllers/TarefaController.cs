@@ -76,9 +76,10 @@ namespace pasta_projeto.Controllers
         [HttpGet("ObterPorTitulo")]
         public IActionResult GetByTitle(string Titulo)
         {
-            var titulos = _context.Tarefas.Where(tit => tit.Titulo.Contains(Titulo));
+            var titulos = _context.Tarefas.Where(x => x.Titulo.Contains(Titulo));
+            var count = titulos.Count();
 
-            if (titulos != null)
+            if (count > 0)
             {
                 string titulo = Titulo;
                 return Ok(titulos);
