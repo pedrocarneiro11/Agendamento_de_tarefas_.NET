@@ -23,7 +23,7 @@ namespace pasta_projeto.Controllers
             _context = context;
         }
 
-        // CRIAR METODO POST : /Tarefa  OK
+        //  METODO POST : /Tarefa  OK
 
         [HttpPost]
         public IActionResult Create(Tarefa tarefa)
@@ -33,7 +33,7 @@ namespace pasta_projeto.Controllers
             return CreatedAtAction(nameof(GetByID), new { id = tarefa.Id}, tarefa);
         }
 
-        // Criar método GetByID : /Tarefa/{id} OK
+        //  método GetByID : /Tarefa/{id} OK
 
         [HttpGet("{id}")]
         public IActionResult GetByID(int id)
@@ -55,7 +55,7 @@ namespace pasta_projeto.Controllers
                 return NotFound();
             }
         }        
-        // CRIAR METODO GET : /Tarefa/ObterTodos OK
+        // METODO GET : /Tarefa/ObterTodos OK
         [HttpGet]
         public IActionResult GetAll()
         {
@@ -71,7 +71,7 @@ namespace pasta_projeto.Controllers
 
             return null;
         }
-        // CRIAR METODO GET : /Tarefa/ObterPorTitulo OK
+        // METODO GET : /Tarefa/ObterPorTitulo OK
         [HttpGet("ObterPorTitulo")]
         public IActionResult GetByTitle(string Titulo)
         {
@@ -89,7 +89,7 @@ namespace pasta_projeto.Controllers
             }
         }
 
-        // CRIAR METODO GET : /Tarefa/ObterPorData OK
+        // METODO GET : /Tarefa/ObterPorData OK
         [HttpGet("ObterPorData")]
         public IActionResult ObterPorData(DateTime data)
         {
@@ -106,7 +106,7 @@ namespace pasta_projeto.Controllers
             }
         }
 
-        // CRIAR METODO PUT: /Tarefa/{id} OK
+        //  METODO PUT: /Tarefa/{id} OK
         [HttpPut("{id}")]
         public IActionResult Update(int id, Tarefa tarefa)
         {
@@ -129,10 +129,8 @@ namespace pasta_projeto.Controllers
                 return Ok(tarefaBanco);
             }
         }
-
-
         
-        // CRIAR METODO GET : /Tarefa/ObterPorStatus  
+        //  METODO GET : /Tarefa/ObterPorStatus  
 
         [HttpGet("ObterPorStatus")]
         public IActionResult GetByStatus(StatusTarefa StatusTarefa)
@@ -149,9 +147,25 @@ namespace pasta_projeto.Controllers
             {
                 return NotFound();
             }
-        }
-
+        }        
         
-        // TODO: CRIAR METODO DELETE: /Tarefa/{id}
+        
+        // METODO DELETE: /Tarefa/{id}
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var tarefaBanco = _context.Tarefas.Find(id);
+
+            if (tarefaBanco == null)
+            {
+                return NotFound();
+            }
+            else{
+                _context.Tarefas.Remove(tarefaBanco);
+                _context.SaveChanges();
+
+                return NoContent();
+            }
+        }
     }
 }
