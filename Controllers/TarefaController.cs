@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using _pasta_projeto.Context;
 using _pasta_projeto.Models;
@@ -129,7 +130,28 @@ namespace pasta_projeto.Controllers
             }
         }
 
-        // TODO: CRIAR METODO GET : /Tarefa/ObterPorStatus        
+
+        
+        // CRIAR METODO GET : /Tarefa/ObterPorStatus  
+
+        [HttpGet("ObterPorStatus")]
+        public IActionResult GetByStatus(StatusTarefa StatusTarefa)
+        {
+            var status = _context.Tarefas.Where(x => x.StatusTarefa == StatusTarefa);
+
+            var count = status.Count();
+
+            if (count > 0)
+            {
+                return Ok(status);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
+        
         // TODO: CRIAR METODO DELETE: /Tarefa/{id}
     }
 }
