@@ -4,13 +4,12 @@ using System.Diagnostics;
 using System.Linq;
 using System.ComponentModel;
 using System.Threading.Tasks;
-using _pasta_projeto.Context;
-using _pasta_projeto.Models;
-using _pasta_projeto.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using agendamento_de_tarefas.Entities;
+using agendamento_de_tarefas.Context;
 
-namespace pasta_projeto.Controllers
+namespace agendamento_de_tarefas.Controllers
 {
     [ApiController]
     [Route("[controller]")]
@@ -28,9 +27,9 @@ namespace pasta_projeto.Controllers
         [HttpPost]
         public IActionResult Create(Tarefa tarefa)
         {
-            _context.Add(tarefa);            
+            _context.Add(tarefa);
             _context.SaveChanges();
-            return CreatedAtAction(nameof(GetByID), new { id = tarefa.Id}, tarefa);
+            return CreatedAtAction(nameof(GetByID), new { id = tarefa.Id }, tarefa);
         }
 
         //  método GetByID : /Tarefa/{id} OK
@@ -40,7 +39,7 @@ namespace pasta_projeto.Controllers
         {
             var tarefa = _context.Tarefas.Find(id);
 
-            if(tarefa != null)
+            if (tarefa != null)
             {
                 int Id = id;
                 string Titulo = tarefa.Titulo;
@@ -50,11 +49,11 @@ namespace pasta_projeto.Controllers
 
                 return Ok(tarefa);
             }
-            else 
+            else
             {
                 return NotFound();
             }
-        }        
+        }
         // METODO GET : /Tarefa/ObterTodos OK
         [HttpGet]
         public IActionResult GetAll()
@@ -96,11 +95,11 @@ namespace pasta_projeto.Controllers
             var tarefa = _context.Tarefas.Where(x => x.Data.Date == data.Date);
             var count = tarefa.Count();
 
-            if(tarefa != null && count > 0)
+            if (tarefa != null && count > 0)
             {
                 return Ok(tarefa);
             }
-            else 
+            else
             {
                 return NotFound();
             }
@@ -115,8 +114,8 @@ namespace pasta_projeto.Controllers
             if (tarefaBanco == null)
             {
                 return NotFound();
-            } 
-            else 
+            }
+            else
             {
                 tarefaBanco.Titulo = tarefa.Titulo;
                 tarefaBanco.Descricao = tarefa.Descricao;
@@ -129,7 +128,7 @@ namespace pasta_projeto.Controllers
                 return Ok(tarefaBanco);
             }
         }
-        
+
         //  METODO GET : /Tarefa/ObterPorStatus  
 
         [HttpGet("ObterPorStatus")]
@@ -147,9 +146,9 @@ namespace pasta_projeto.Controllers
             {
                 return NotFound();
             }
-        }        
-        
-        
+        }
+
+
         // METODO DELETE: /Tarefa/{id}
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
@@ -160,7 +159,8 @@ namespace pasta_projeto.Controllers
             {
                 return NotFound();
             }
-            else{
+            else
+            {
                 _context.Tarefas.Remove(tarefaBanco);
                 _context.SaveChanges();
 

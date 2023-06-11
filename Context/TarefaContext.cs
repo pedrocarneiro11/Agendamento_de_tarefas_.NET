@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using _pasta_projeto.Models;
+using agendamento_de_tarefas.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace _pasta_projeto.Context
+namespace agendamento_de_tarefas.Context
 {
     public class TarefaContext : DbContext
     {
@@ -14,15 +14,15 @@ namespace _pasta_projeto.Context
 
         }
 
-        public DbSet<Tarefa> Tarefas{ get; set; }
+        public DbSet<Tarefa> Tarefas { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.Entity<Tarefa>()
-            .Property(t => t.StatusTarefa)
-            .HasConversion<string>(); // Converte o enum para string
+        {
+            modelBuilder.Entity<Tarefa>()
+                .Property(t => t.StatusTarefa)
+                .HasConversion<string>(); // Converte o enum para string
 
-        base.OnModelCreating(modelBuilder);
-    }
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

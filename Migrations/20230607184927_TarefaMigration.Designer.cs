@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using _pasta_projeto.Context;
+using agendamento_de_tarefas.Context;
 
 #nullable disable
 
-namespace _pasta_projeto.Migrations
+namespace agendamento_de_tarefas.Migrations
 {
     [DbContext(typeof(TarefaContext))]
     [Migration("20230607184927_TarefaMigration")]

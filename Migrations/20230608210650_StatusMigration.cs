@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace _pasta_projeto.Migrations
+namespace agendamento_de_tarefas.Migrations
 {
     /// <inheritdoc />
     public partial class StatusMigration : Migration
