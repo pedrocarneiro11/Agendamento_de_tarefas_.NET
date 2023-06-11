@@ -105,25 +105,31 @@ namespace pasta_projeto.Controllers
             }
         }
 
-
-        /*
-        [HttpGet("ObterPorData")]
-        public IActionResult GetByDate(DateTime data)
+        // CRIAR METODO PUT: /Tarefa/{id} OK
+        [HttpPut("{id}")]
+        public IActionResult Update(int id, Tarefa tarefa)
         {
-            var tarefa = _context.Tarefas.Where(x => x.Data.Date == data.Date);
-            if(tarefa != null)
-            {
-                return Ok(tarefa);
-            }
-            else 
+            var tarefaBanco = _context.Tarefas.Find(id);
+
+            if (tarefaBanco == null)
             {
                 return NotFound();
-            }
-        } 
-        */
+            } 
+            else 
+            {
+                tarefaBanco.Titulo = tarefa.Titulo;
+                tarefaBanco.Descricao = tarefa.Descricao;
+                tarefaBanco.Data = tarefa.Data;
+                tarefaBanco.StatusTarefa = tarefa.StatusTarefa;
 
-        // TODO: CRIAR METODO GET : /Tarefa/ObterPorStatus
-        // TODO: CRIAR METODO PUT: /Tarefa/{id}
+                _context.Tarefas.Update(tarefaBanco);
+                _context.SaveChanges();
+
+                return Ok(tarefaBanco);
+            }
+        }
+
+        // TODO: CRIAR METODO GET : /Tarefa/ObterPorStatus        
         // TODO: CRIAR METODO DELETE: /Tarefa/{id}
     }
 }
