@@ -22,7 +22,7 @@ namespace pasta_projeto.Controllers
             _context = context;
         }
 
-        // TODO: CRIAR METODO POST : /Tarefa  
+        // CRIAR METODO POST : /Tarefa  OK
 
         [HttpPost]
         public IActionResult Create(Tarefa tarefa)
@@ -32,7 +32,7 @@ namespace pasta_projeto.Controllers
             return CreatedAtAction(nameof(GetByID), new { id = tarefa.Id}, tarefa);
         }
 
-        // TODO: Criar método GetByID
+        // Criar método GetByID : /Tarefa/{id} OK
 
         [HttpGet("{id}")]
         public IActionResult GetByID(int id)
@@ -53,11 +53,44 @@ namespace pasta_projeto.Controllers
             {
                 return NotFound();
             }
+        }        
+        // CRIAR METODO GET : /Tarefa/ObterTodos OK
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            var tarefas = _context.Tarefas.ToList();
+
+            if (tarefas != null)
+            {
+                foreach (var tarefa in tarefas)
+                {
+                    return Ok(tarefas);
+                }
+            }
+
+            return null;
         }
 
-        // TODO: CRIAR METODO GET : /Tarefa/{id}
-        // TODO: CRIAR METODO GET : /Tarefa/ObterTodos
-        // TODO: CRIAR METODO GET : /Tarefa/ObterPorTitulo
+
+        // CRIAR METODO GET : /Tarefa/ObterPorTitulo OK
+        [HttpGet("ObterPorTitulo")]
+        public IActionResult GetByTitle(string Titulo)
+        {
+            var titulos = _context.Tarefas.Where(tit => tit.Titulo.Contains(Titulo));
+
+            if (titulos != null)
+            {
+                string titulo = Titulo;
+                return Ok(titulos);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
+
+
         // TODO: CRIAR METODO GET : /Tarefa/ObterPorData
         // TODO: CRIAR METODO GET : /Tarefa/ObterPorStatus
         // TODO: CRIAR METODO PUT: /Tarefa/{id}
