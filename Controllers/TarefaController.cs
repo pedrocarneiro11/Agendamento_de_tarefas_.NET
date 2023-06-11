@@ -70,8 +70,6 @@ namespace pasta_projeto.Controllers
 
             return null;
         }
-
-
         // CRIAR METODO GET : /Tarefa/ObterPorTitulo OK
         [HttpGet("ObterPorTitulo")]
         public IActionResult GetByTitle(string Titulo)
@@ -90,9 +88,40 @@ namespace pasta_projeto.Controllers
             }
         }
 
+        // CRIAR METODO GET : /Tarefa/ObterPorData OK
+        [HttpGet("ObterPorData")]
+        public IActionResult ObterPorData(DateTime data)
+        {
+            var tarefa = _context.Tarefas.Where(x => x.Data.Date == data.Date);
+            var count = tarefa.Count();
+
+            if(tarefa != null && count > 0)
+            {
+                return Ok(tarefa);
+            }
+            else 
+            {
+                return NotFound();
+            }
+        }
 
 
-        // TODO: CRIAR METODO GET : /Tarefa/ObterPorData
+        /*
+        [HttpGet("ObterPorData")]
+        public IActionResult GetByDate(DateTime data)
+        {
+            var tarefa = _context.Tarefas.Where(x => x.Data.Date == data.Date);
+            if(tarefa != null)
+            {
+                return Ok(tarefa);
+            }
+            else 
+            {
+                return NotFound();
+            }
+        } 
+        */
+
         // TODO: CRIAR METODO GET : /Tarefa/ObterPorStatus
         // TODO: CRIAR METODO PUT: /Tarefa/{id}
         // TODO: CRIAR METODO DELETE: /Tarefa/{id}
